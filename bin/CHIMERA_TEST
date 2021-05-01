@@ -1,0 +1,126 @@
+#!/usr/bin/env python
+
+import os, sys, getopt
+import CHIMERA
+
+def usage():
+    print("""
+    CHIMERA--
+    Clustering heterogenous disease effects via distribution matching of imaging patterns.
+    
+
+    ***                              CAUTION!                                           ***
+    *** This is a standalone script generating labels for out of samples                ***
+    *** The test samples should be patients and have the same attributes                ***
+    *** as training sampels (e.g. Set, COVAR)                                           ***
+    
+    Usage: CHIMERA_TEST [OPTIONS] 
+
+    Required:
+    [-i <string>  ]    File name of data in .csv format with header line, one subject per row 
+                       Header line can have types of:
+                           ID    : subject ID (optional)
+                           Set   : subject dataset ID (optional)
+                           COVAR : covariates (optional)
+                           IMG   : imaging features (required)
+    [-r <string>  ]    File name of clustering outputs
+    [-m <string>  ]    File name of the trained model
+    
+    Options:
+    [-u --usage   ]    Display this message
+    [-h --help    ]    Display this message
+    [-V --Version ]    Display version information
+
+    Example:
+    CHIMERA_TEST -i data.csv -r output.txt -m model.cpkl
+
+    csv file data.csv should look like below (must contain fields IMG and Group):
+        
+        ID,        COVAR,COVAR, IMG,   IMG, ..., Set
+        TEST_0001, 15.1, 0.454, 0.212, 0.13,....,1
+        TEST_0002, 20.9, 0.121, 0.343, 1.32,..., 2  
+        TEST_0003, 21.2, 0.141, 0.143, 0.21,..., 2
+        ...
+        ...
+    
+    Reference:
+    Dong, et al. "CHIMERA:Clustering heterogenous disease effects via distribution matching
+    of imaging patterns" IEEE Transactions on Medical Imaging, 2016.
+
+    Copyright (c) year University of Pennsylvania. All rights reserved.
+    Contact: sbia-software@uphs.upenn.edu
+    """)
+   
+def version():
+    print(\
+    "CHIMERA--\n" + 
+    "Clustering heterogenous disease effects via distribution matching of imaging patterns.\n\n"+
+    "version " + CHIMERA.__version__ + "\n" +
+    "Copyright (c) year University of Pennsylvania. All rights reserved.\n" +
+    "See https://www.cbica.upenn.edu/sbia/software/license.html or COPYING file\n")
+
+
+def main():
+    rOpts = 0
+    verbose = False
+
+    sys.stdout.write("Parsing arguments...\n")
+    try:
+        opts, files = getopt.getopt(sys.argv[1:], "i:r:m:uhV",\
+                                        ["help", "usage","Version"])
+
+    except getopt.GetoptError as err:
+        usage()
+        print(str(err)) # will print something like "option -a not recognized"
+        sys.exit(2)
+
+    for o, a in opts:
+        if o in ("-h", "--help","-u","--usage"):
+            usage()
+            sys.exit(0)
+        elif o in ("-V", "--Version"):
+            version()
+            sys.exit(0)
+        elif o in ("-i"):
+            dataFile = a
+            rOpts+=1 # for required options
+        elif o in ("-r"):
+            outFile = a
+            rOpts+=1 # for required options
+        elif o in ("-m"):
+            modelFile = a
+            rOpts+=1 # for required options
+        else:
+            assert False, "unhandled option"
+
+    if rOpts != 3:
+        usage()
+        sys.stdout.write("Error: please specify all required arguments.\n")
+        sys.exit(1)
+     
+    # check input
+    if not os.path.exists(dataFile):
+        sys.stdout.write("File " + dataFile + " not found\n")
+        sys.exit(1)
+    if dataFile == outFile:
+        sys.stdout.write("Input file and output file name should not be the same.\n")
+        sys.exit(1)
+
+    if not os.path.exists(modelFile):
+        sys.stdout.write("Model " + modelFile + " not found\n")
+        sys.exit(1)
+
+    # run test
+    sys.stdout.write("Starting CHIMERA clustering...\n")
+    CHIMERA.algorithm.clustering_test(dataFile,outFile,modelFile)
+    
+    # check output
+    if not os.path.exists(outFile):
+        sys.stdout.write("Error in generating clusters, " + outFile + " not generated\n")
+        sys.exit(1)
+    
+    sys.stdout.write("Finished.\n")
+    return 0
+            
+if __name__ == '__main__': main()
+
