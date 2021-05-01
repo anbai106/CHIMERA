@@ -1,5 +1,5 @@
 # `CHIMERA`
-Since the original repository of [CHIMERA](https://github.com/aoyandong/CHIMERA) is not maintained any more, the current implementation cleaned the code and upgraded it to python 3.
+Since the original repository of [CHIMERA](https://github.com/aoyandong/CHIMERA) is not maintained anymore, the current implementation cleaned the code and upgraded it to python 3.
 
 CHIMERA is a generative model and its core idea is shown below:
 ![image info](./data/fig1.png)
