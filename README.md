@@ -1,29 +1,16 @@
 # `CHIMERA`
-Since the original repository of [CHIMERA](https://github.com/aoyandong/CHIMERA) is not maintained any more by the author, the current implementation cleaned the code and upgraded it to python 3.
+Since the original repository of [CHIMERA](https://github.com/aoyandong/CHIMERA) is not maintained any more, the current implementation cleaned the code and upgraded it to python 3.
+
+CHIMERA is a generative model and its core idea is shown below:
+![image info](./data/fig1.png)
 
 ## License
-  Section of Biomedical Image Analysis
-  Department of Radiology
-  University of Pennsylvania
-  Richard Building
-  3700 Hamilton Walk, 7th Floor
-  Philadelphia, PA 19104
+Copyright (c) 2016 University of Pennsylvania. All rights reserved.
+See https://www.cbica.upenn.edu/sbia/software/license.html.
 
-  Web:   https://www.cbica.upenn.edu/sbia/
-  Email: sbia-software at uphs.upenn.edu
+Original author: Aoyan Dong
 
-  Copyright (c) 2016 University of Pennsylvania. All rights reserved.
-  See https://www.cbica.upenn.edu/sbia/software/license.html or COPYING file.
-
-Original author:
-
-Aoyan Dong
-
-Maintainer:
-
-Junhao Wen
-
-cbica-software@uphs.upenn.edu
+Maintainer: Junhao Wen
 
 ## Installation
 [Ananconda](https://www.anaconda.com/products/individual) allows you to install, run and update python package and their dependencies. We highly recommend the users to install **Anancond3** on your machine.
