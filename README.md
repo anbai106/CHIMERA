@@ -15,10 +15,14 @@ Since the original repository of [CHIMERA](https://github.com/aoyandong/CHIMERA)
   Copyright (c) 2016 University of Pennsylvania. All rights reserved.
   See https://www.cbica.upenn.edu/sbia/software/license.html or COPYING file.
 
-Author:
+Original author:
+
 Aoyan Dong
+
 Maintainer:
+
 Junhao Wen
+
 cbica-software@uphs.upenn.edu
 
 ## Installation
@@ -53,12 +57,11 @@ pip install -e .
 python -m pip install git+https://github.com/aoyandong/CHIMERA.git
 ```
 
--## Input structure
+## Input structure
 CHIMERA requires a specific input structure inspired by [BIDS](https://bids.neuroimaging.io/).
 Some conventions for the group label/diagnosis: -1 represents healthy control (**CN**) and 1 represents patient (**PT**); categorical variables, such as sex, should be encoded to numbers: Female for 0 and Male for 1, for instance.
 
 ### Input data format
-#### Clustering
 CHIMERA clusters with ROI features in **feature_tsv** and **covariate_tsv** offers covariate effects, such as age, sex or site (Note that CHIMERA treats site and other covaiates slightly different, i.e., with different distance weights).
 Example for **feature_tsv**:
 ```
