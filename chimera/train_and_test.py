@@ -1,27 +1,6 @@
-"""
-###############################################################################
- This script runs CHIMERA with structural ROI data 
- It takes arguments:
- (1) data csv spreadsheet (group information: controls as 0 and patients as 1).
- (2) output file name
- (3) number of clusters needed
- It outputs 
- (1) a txt file containing clustering labels for patients.
- (2) a cPickle file containing the trained model (optional)
-
- Dependencies
-  python 2.7, scikit-learn
-
- author Aoyan Dong
-
- Link: https://www.cbica.upenn.edu/sbia/software/
-
- Contact: sbia-software@uphs.upenn.edu
-###############################################################################
-"""
-
-import os, sys
 from .algorithm import *
+
+##NOTE: this script has not been adapted! Don't use it directly!
 
 def train(dataFile, outFile, numClusters, lambda1=10.0, lambda2=100.0, r=-1.0, rs=10, eps=0.001, max_iter=100,\
         numRun=50, modelFile="", transform="affine", norm=1, mode=2, verbose=False, quiet=True):
@@ -127,7 +106,7 @@ def train(dataFile, outFile, numClusters, lambda1=10.0, lambda2=100.0, r=-1.0, r
     # run optimzation
     sys.stdout.write("Starting CHIMERA clustering...\n")
     config.update({'K':numClusters})
-    clustering(dataFile,outFile,config)
+    clustering_main(dataFile,outFile,config)
     
     # check output
     if not os.path.exists(outFile):
