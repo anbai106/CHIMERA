@@ -4,13 +4,10 @@ Since the original repository of [CHIMERA](https://github.com/aoyandong/CHIMERA)
 CHIMERA is a generative model and its core idea is shown below:
 ![image info](./data/fig1.png)
 
-## License
-Copyright (c) 2016 University of Pennsylvania. All rights reserved.
-See https://www.cbica.upenn.edu/sbia/software/license.html.
-
+## Contributors
 Original author: Aoyan Dong
 
-Maintainer: Junhao Wen
+Current maintainer: Junhao Wen
 
 ## Installation
 [Ananconda](https://www.anaconda.com/products/individual) allows you to install, run and update python package and their dependencies. We highly recommend the users to install **Anancond3** on your machine.
